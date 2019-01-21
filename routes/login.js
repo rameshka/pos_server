@@ -9,7 +9,7 @@ router.get('/', (req, res) => {
 
 router.post('/', (req, res) => {
   console.log(req.body);
-  userController.authenticateToken(req,res);
+  userController.authenticateUser(req,res);
 });
 
 module.exports = router;
