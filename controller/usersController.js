@@ -38,7 +38,7 @@ module.exports = {
         }
     });
 },
-    authenticateToken:(req,res) => {
+    authenticateUser:(req,res) => {
         mongoose.connect(connUri, { useCreateIndex: true,useNewUrlParser : true }, (err) => {
             User.findOne({name: req.body.username}, function(err, user) {
 
@@ -72,4 +72,4 @@ module.exports = {
 
         });
     }
-}
+};
