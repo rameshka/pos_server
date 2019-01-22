@@ -2,8 +2,9 @@ require('dotenv').config();
 var express = require('express');
 var path = require('path');
 var bodyParser = require('body-parser');
-var cors = require('cors')
-var protectedRouteMiddleware =  require('./middleware/middleware');
+var cors = require('cors');
+var db = require('./middleware/db_middleware');
+var protectedRouteMiddleware =  require('./middleware/route_middleware');
 
 var indexRouter = require('./routes/index');
 var loginRouter = require('./routes/login');
@@ -22,8 +23,11 @@ app.use(cors());
 app.use('/', indexRouter);
 app.use('/Login',loginRouter);
 
-app.use(protectedRouteMiddleware.protecteroutes);
+//moving for testing
 app.use('/order',orderRouter);
+
+app.use(protectedRouteMiddleware.protecteroutes);
+//app.use('/order',orderRouter);
 
 
 app.use(function(err, req, res, next) {
