@@ -9,10 +9,10 @@ const itemSchema = new Schema({
         unique: true
     },
     price: {
-        type: 'String',
+        type: 'Decimal128',
         required: true,
         trim: true
     }
 });
 
-module.exports = mongoose.model('User', userSchema); // instance of schema
+module.exports = mongoose.model('Item', itemSchema); // instance of schema
