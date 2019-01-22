@@ -18,7 +18,7 @@ const userSchema = new Schema({
     }
 });
 
-// encrypt password before save
+//TODO encrypt password before save
 /*
 userSchema.pre('save', function(next) {
     const user = this;
