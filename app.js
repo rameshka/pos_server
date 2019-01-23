@@ -23,9 +23,11 @@ app.use(cors());
 app.use('/', indexRouter);
 app.use('/Login',loginRouter);
 
-app.use(protectedRouteMiddleware.protecteroutes);
 
 app.use('/orderData',orderRouter);
+app.use(protectedRouteMiddleware.protecteroutes);
+
+
 
 app.use(function(err, req, res, next) {
   // set locals, only providing error in development

@@ -1,9 +1,10 @@
 var fs = require('fs');
 const Item = require('../model/Item');
 var path = require('path');
+var OrderModel = require('../model/Order');
 
 module.exports = {
-    //used to save values to the database
+    //used to save individual values to the database
     saveItem: (req, res) => {
 
         let filePath = path.join(__dirname, 'items.json');
@@ -18,18 +19,14 @@ module.exports = {
 
                 let newItem = new Item({name, price});
 
-                newItem.save((err, user) => {
+                newItem.save((err) => {
                     if (!err) {
                         console.log("success save");
-                        result.status = status;
-                        result.result = user;
+
                     } else {
-                        status = 500;
-                        result.status = status;
-                        result.error = err;
+                        console.log("Unsuccess save");
                     }
-                    console.log('last ' + 'err');
-                    res.status(status).send(result);
+
                 });
             }
         });
@@ -45,7 +42,7 @@ module.exports = {
             } else {
 
                 // return the item information formatted for front end
-                var itemData = []
+                var itemData = [];
                 for(let i = 0 ; i <items.length;i++){
                     itemData.push({key: items[i].name, value: items[i].name, text: items[i].name,price: items[i].price})
                 }
@@ -57,6 +54,35 @@ module.exports = {
                 });
             }
         });
+
+    },
+    saveOrderData:(req,res)=>{
+        var itemList = req.body.itemList;
+        var orderItemList = [];
+        let totalOrderCost = req.body.totalOrderCost;
+        let status = req.body.status;
+        let orderID = '1';
+
+
+
+        for(let i = 0;i<itemList.length;i++){
+            orderItemList.push(new OrderModel.OrderItem(itemList[i]));
+        }
+
+        let order = new OrderModel.Order({orderID:orderID,cost:totalOrderCost,items:orderItemList,status:status});
+
+
+        order.save((err) => {
+            if (!err) {
+                console.log("success save");
+
+            } else {
+                console.log("Unsuccess save" + err);
+            }
+
+        });
+
+
 
     }
 
