@@ -8,7 +8,6 @@ router.get('/', (req, res) => {
 
 
 router.post('/', (req, res) => {
-  console.log(req.body);
   userController.authenticateUser(req,res);
 });
 

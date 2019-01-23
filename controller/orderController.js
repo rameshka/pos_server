@@ -44,11 +44,16 @@ module.exports = {
                 });
             } else {
 
-                // return the information including token as JSON
+                // return the item information formatted for front end
+                var itemData = []
+                for(let i = 0 ; i <items.length;i++){
+                    itemData.push({key: items[i].name, value: items[i].name, text: items[i].name,price: items[i].price})
+                }
+
                 res.json({
                     success: true,
                     message: 'success data retrieve!',
-                    data: items
+                    data: itemData
                 });
             }
         });

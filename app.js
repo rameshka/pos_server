@@ -23,12 +23,9 @@ app.use(cors());
 app.use('/', indexRouter);
 app.use('/Login',loginRouter);
 
-//moving for testing
-app.use('/order',orderRouter);
-
 app.use(protectedRouteMiddleware.protecteroutes);
-//app.use('/order',orderRouter);
 
+app.use('/orderData',orderRouter);
 
 app.use(function(err, req, res, next) {
   // set locals, only providing error in development
