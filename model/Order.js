@@ -6,7 +6,6 @@ const orderItemSchema = new Schema({
         type: 'String',
         required: true,
         trim: true,
-        unique: true
     },
     price: {
         type: 'Number',

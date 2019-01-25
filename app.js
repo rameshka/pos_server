@@ -3,11 +3,12 @@ var express = require('express');
 var path = require('path');
 var bodyParser = require('body-parser');
 var cors = require('cors');
-var db = require('./middleware/db_middleware');
+db = require('./middleware/db_middleware');
 var protectedRouteMiddleware =  require('./middleware/route_middleware');
 
 var indexRouter = require('./routes/index');
 var loginRouter = require('./routes/login');
+var itemRouter = require('./routes/item');
 var orderRouter = require('./routes/order');
 
 var app = express();
@@ -23,8 +24,9 @@ app.use(cors());
 app.use('/', indexRouter);
 app.use('/Login',loginRouter);
 
-
+app.use('/itemData',itemRouter);
 app.use('/orderData',orderRouter);
+
 app.use(protectedRouteMiddleware.protecteroutes);
 
 
